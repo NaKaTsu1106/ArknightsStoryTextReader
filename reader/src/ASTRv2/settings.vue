@@ -37,7 +37,7 @@
             <n-radio-button :key="NULL" value="none">
               {{ $t('settings.none') }}
             </n-radio-button>
-            <n-radio-button v-for="lang in langOpts" :key="lang" :value="lang">
+            <n-radio-button v-for="lang in serverOpts" :key="lang" :value="lang">
               {{ lang }}
             </n-radio-button>
           </n-radio-group>
@@ -190,6 +190,7 @@ export default {
       currentLang: func.l,
       altLang: func.alt,
       langOpts: func.langList,
+      serverOpts: func.serverList,
       doctor: func.doctor,
       showDelay: func.showDelay,
       mirror: func.mirror,

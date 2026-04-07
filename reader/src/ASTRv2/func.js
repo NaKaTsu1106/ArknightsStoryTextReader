@@ -1,4 +1,4 @@
-const langList = ["zh_CN", "en_US", "ko_KR", "ja_JP", "zh_TW"];
+const langList = ["zh_CN", "en_US", "ko_KR", "ja_JP", "zh_TW", "ru"];
 const serverList = ["zh_CN", "en_US", "ko_KR", "ja_JP", "zh_TW"];
 const bgModes = ["full", "stripe", "off"];
 const professions = [

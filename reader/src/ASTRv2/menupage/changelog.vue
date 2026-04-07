@@ -3,6 +3,10 @@
     <template #header>
       <n-h2 prefix="bar">Changelog</n-h2>
     </template>
+    <n-h4>v1.11.2</n-h4>
+    <n-oi>
+      <n-li>i18n updates</n-li>
+    </n-oi>
     <n-h4>v1.11.1</n-h4>
     <n-oi>
       <n-li>Added gray color to alt language. <n-a href="https://github.com/050644zf/ArknightsStoryTextReader/issues/88">#88</n-a></n-li>

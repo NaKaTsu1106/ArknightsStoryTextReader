@@ -26,6 +26,7 @@ import zh_CN from './ASTRv2/astr-i18n/zh_CN.json'
 import ja_JP from './ASTRv2/astr-i18n/ja_JP.json'
 import ko_KR from './ASTRv2/astr-i18n/ko_KR.json'
 import zh_TW from './ASTRv2/astr-i18n/zh_TW.json'
+import ru from './ASTRv2/astr-i18n/ru.json'
 
 import func from './ASTRv2/func.js'
 
@@ -35,6 +36,7 @@ const messages = {
     ja_JP: ja_JP,
     ko_KR: ko_KR,
     zh_TW: zh_TW,
+    ru: ru,
 }
 
 const routes = [
