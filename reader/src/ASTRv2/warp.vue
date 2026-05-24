@@ -17,12 +17,11 @@
 
 <script>
 import { computed } from "vue";
+import store from "./store.js";
 export default {
   data() {
     return {
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
+      eventList: store.get("eventList", []),
       value: null,
       options: computed(() => {
         return this.search();

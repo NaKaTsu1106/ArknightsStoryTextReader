@@ -84,6 +84,7 @@
 
 <script>
 import { SearchOutlined, OpenInNewOutlined } from "@vicons/material";
+import store from "../store.js";
 import $ from "jquery";
 export default {
   data() {
@@ -95,9 +96,7 @@ export default {
       isIncomplete: false,
       isSearching: false,
       isSearched: false,
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
+      eventList: store.get("eventList", []),
     };
   },
   components: {

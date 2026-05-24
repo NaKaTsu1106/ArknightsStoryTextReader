@@ -128,26 +128,18 @@
 import { CalendarMonthOutlined, ViewTimelineOutlined } from "@vicons/material";
 
 import func from "../func.js";
+import store from "../store.js";
 import EventCard from "./event_card.vue";
 
 export default {
   data() {
     return {
       server: this.$route.params.server,
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
-      mdata: window.sessionStorage.getItem("menudata")
-      ? JSON.parse(window.sessionStorage.getItem("menudata"))
-      : {},
-      wordCount: window.sessionStorage.getItem("wordCountData")
-      ? JSON.parse(window.sessionStorage.getItem("wordCountData"))
-      : {},
-      storylines: window.sessionStorage.getItem("storylines")
-        ? JSON.parse(window.sessionStorage.getItem("storylines"))
-        : {},
-      storylineStorySets: window.sessionStorage.getItem("storylineStorySets")
-        ? JSON.parse(window.sessionStorage.getItem("storylineStorySets")):{},
+      eventList: store.get("eventList", []),
+      mdata: store.get("menudata", {}),
+      wordCount: store.get("wordCountData", {}),
+      storylines: store.get("storylines", {}),
+      storylineStorySets: store.get("storylineStorySets", {}),
       eventType: this.$route.params.eventType,
       eventID: this.$route.params.eventID,
       eventIdx: this.$route.params.eventIdx,

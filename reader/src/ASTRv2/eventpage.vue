@@ -152,16 +152,13 @@ import {
 import openInNew from "./components/openInNewBtn.vue";
 import openInGTL from "./components/openInGTL.vue";
 import func from "./func.js";
+import store from "./store.js";
 export default {
   data() {
     return {
       eventid: this.$route.params.event,
-      mdata: window.sessionStorage.getItem("menudata")
-        ? JSON.parse(window.sessionStorage.getItem("menudata"))
-        : {},
-      infodata: window.sessionStorage.getItem("infodata")
-        ? JSON.parse(window.sessionStorage.getItem("infodata"))
-        : {},
+      mdata: store.get("menudata", {}),
+      infodata: store.get("infodata", {}),
       showIntro: false,
       server: this.$route.params.server,
     };

@@ -71,6 +71,7 @@ import {
   SortOutlined,
 } from "@vicons/material";
 import func from "../func";
+import store from "../store.js";
 import source from "../source";
 import openInNew from "../components/openInNewBtn.vue";
 import opcard from "../components/opcard.vue";
@@ -79,15 +80,9 @@ export default {
   data() {
     return {
       eventype: "or",
-      mdata: window.sessionStorage.getItem("menudata")
-        ? JSON.parse(window.sessionStorage.getItem("menudata"))
-        : {},
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
-      wordCount: window.sessionStorage.getItem("wordCountData")
-        ? JSON.parse(window.sessionStorage.getItem("wordCountData"))
-        : {},
+      mdata: store.get("menudata", {}),
+      eventList: store.get("eventList", []),
+      wordCount: store.get("wordCountData", {}),
       charinfo: {},
       loaded: false,
       server: this.$route.params.server,

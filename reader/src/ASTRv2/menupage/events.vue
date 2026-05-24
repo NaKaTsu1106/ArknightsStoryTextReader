@@ -147,20 +147,15 @@ import {
   SortOutlined,
 } from "@vicons/material";
 import func from "../func";
+import store from "../store.js";
 import openInNew from "../components/openInNewBtn.vue";
 export default {
   props: ["eventype"],
   data() {
     return {
-      mdata: window.sessionStorage.getItem("menudata")
-        ? JSON.parse(window.sessionStorage.getItem("menudata"))
-        : {},
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
-      wordCount: window.sessionStorage.getItem("wordCountData")
-        ? JSON.parse(window.sessionStorage.getItem("wordCountData"))
-        : {},
+      mdata: store.get("menudata", {}),
+      eventList: store.get("eventList", []),
+      wordCount: store.get("wordCountData", {}),
       server: this.$route.params.server,
       currentLang: func.l,
       unit: this.$route.params.server == "en_US" ? "wordCount" : "charCount",

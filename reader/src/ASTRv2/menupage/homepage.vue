@@ -200,6 +200,7 @@
 
 <script>
 import { ArrowForwardOutlined, InfoOutlined } from "@vicons/material";
+import store from "../store.js";
 import analysis_png from "./banners/analysis.png";
 import maintheme_png from "./banners/maintheme.png";
 import op_png from "./banners/op.png";
@@ -212,9 +213,7 @@ export default {
   data() {
     return {
       eventType: ["maintheme", "sidestory", "intermezzi", "storyset"],
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
+      eventList: store.get("eventList", []),
       latestEvents: [],
       analysis_png: analysis_png,
       maintheme_png: maintheme_png,

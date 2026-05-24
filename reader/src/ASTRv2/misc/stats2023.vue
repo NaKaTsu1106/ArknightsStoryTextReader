@@ -599,6 +599,7 @@ import {
   OpenInNewOutlined,
 } from "@vicons/material";
 import func from "../func";
+import store from "../store.js";
 // import stats from './stats.json'
 // import story from './story.json'
 import { h } from "vue";
@@ -612,9 +613,7 @@ export default {
       // story: story.data,
       uploaded: { stats: false },
       analysis_enabled: false,
-      chardict: window.sessionStorage.getItem("chardict")
-        ? JSON.parse(window.sessionStorage.getItem("chardict"))
-        : {},
+      chardict: store.get("chardict", {}),
       showSecretaryHistory: false,
       SecretaryHistoryCols: [
         {

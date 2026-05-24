@@ -170,6 +170,7 @@
 <script>
 import menuVue from "./menu.vue";
 import func from "./func.js";
+import store from "./store.js";
 import nameline from "./content/nameline.vue";
 import subtitle from "./content/subtitle.vue";
 import decision from "./content/decision.vue";
@@ -207,9 +208,7 @@ export default {
       loadingbar: useLoadingBar(),
       dialog: useDialog(),
       message: useMessage(),
-      mdata: window.sessionStorage.getItem("menudata")
-        ? JSON.parse(window.sessionStorage.getItem("menudata"))
-        : {},
+      mdata: store.get("menudata", {}),
       storyOpts: [],
       storyIdx: -1,
       storyCount: 0,

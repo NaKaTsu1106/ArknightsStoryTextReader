@@ -49,6 +49,7 @@
 <script>
 // import * as echarts from "echarts";
 import func from "../func";
+import store from "../store.js";
 import {
   MenuOpenFilled,
   ArrowForwardOutlined,
@@ -80,16 +81,10 @@ use([
 export default {
   data() {
     return {
-      wordCount: window.sessionStorage.getItem("wordCountData")
-        ? JSON.parse(window.sessionStorage.getItem("wordCountData"))
-        : {},
+      wordCount: store.get("wordCountData", {}),
       data: [{ name: "测试", id: "test", type: "or", value: 15 }],
-      mdata: window.sessionStorage.getItem("menudata")
-        ? JSON.parse(window.sessionStorage.getItem("menudata"))
-        : {},
-      eventList: window.sessionStorage.getItem("eventList")
-        ? JSON.parse(window.sessionStorage.getItem("eventList"))
-        : [],
+      mdata: store.get("menudata", {}),
+      eventList: store.get("eventList", []),
       filter: {
         maintheme: true,
         sidestory: true,

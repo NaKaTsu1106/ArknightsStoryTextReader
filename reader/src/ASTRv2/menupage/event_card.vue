@@ -123,6 +123,7 @@ import {
   SortOutlined,
 } from "@vicons/material";
 import func from "../func.js";
+import store from "../store.js";
 import source from "../source.js";
 
 export default {
@@ -133,12 +134,8 @@ export default {
     return {
       parseContent: func.parseContent,
       currentLang: func.l,
-      infodata: window.sessionStorage.getItem("infodata")
-        ? JSON.parse(window.sessionStorage.getItem("infodata"))
-        : {},
-      wordCount: window.sessionStorage.getItem("wordCountData")
-      ? JSON.parse(window.sessionStorage.getItem("wordCountData"))
-      : {},
+      infodata: store.get("infodata", {}),
+      wordCount: store.get("wordCountData", {}),
       server: this.$route.params.server,
       showIntro: false,
     };

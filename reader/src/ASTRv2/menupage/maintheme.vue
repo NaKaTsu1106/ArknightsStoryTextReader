@@ -57,16 +57,14 @@
 </template>
 
 <script>
+import store from "../store.js";
+
 export default {
   data() {
     return {
       server: this.$route.params.server,
-      cdata: window.sessionStorage.getItem("chapterdata")
-        ? JSON.parse(window.sessionStorage.getItem("chapterdata"))
-        : [],
-      mdata: window.sessionStorage.getItem("menudata")
-        ? JSON.parse(window.sessionStorage.getItem("menudata"))
-        : {},
+      cdata: store.get("chapterdata", []),
+      mdata: store.get("menudata", {}),
     };
   },
   // created(){

@@ -31,6 +31,7 @@
 import Header from "./header.vue";
 import func from "./func.js";
 import source from "./source.js";
+import store from "./store.js";
 import { computed } from "vue";
 import { useLoadingBar, useDialog } from "naive-ui";
 
@@ -89,7 +90,7 @@ export default {
     );
   },
   beforeUpdate() {
-    if (this.server != window.sessionStorage.getItem("server")) {
+    if (this.server != store.get("server")) {
       this.initServerData();
     }
   },
@@ -146,22 +147,15 @@ export default {
 
         let eventList = await this.getEventList(menudata, chardict);
         chapterdata = await this.getMainthemeData(chapterdata, eventList);
-        window.sessionStorage.setItem("server", this.server);
-        window.sessionStorage.setItem("menudata", JSON.stringify(menudata));
-        window.sessionStorage.setItem("chardict", JSON.stringify(chardict));
-        // window.sessionStorage.setItem('charinfo', JSON.stringify(charinfo));
-        window.sessionStorage.setItem("infodata", JSON.stringify(infodata));
-        window.sessionStorage.setItem("eventList", JSON.stringify(eventList));
-        window.sessionStorage.setItem(
-          "chapterdata",
-          JSON.stringify(chapterdata)
-        );
-        window.sessionStorage.setItem(
-          "wordCountData",
-          JSON.stringify(wordCountData)
-        );
-        window.sessionStorage.setItem("storylines", JSON.stringify(stageData.storylines));
-        window.sessionStorage.setItem("storylineStorySets", JSON.stringify(stageData.storylineStorySets));
+        store.set("server", this.server);
+        store.set("menudata", menudata);
+        store.set("chardict", chardict);
+        store.set("infodata", infodata);
+        store.set("eventList", eventList);
+        store.set("chapterdata", chapterdata);
+        store.set("wordCountData", wordCountData);
+        store.set("storylines", stageData.storylines);
+        store.set("storylineStorySets", stageData.storylineStorySets);
         this.loadingProgress = 100;
         this.loadingbar.finish();
         this.isDataLoaded = true;

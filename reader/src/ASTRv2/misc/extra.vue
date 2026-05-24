@@ -72,15 +72,14 @@ import {
 } from "@vicons/material";
 import { useLoadingBar, useDialog } from "naive-ui";
 import func from "../func.js";
+import store from "../store.js";
 import source from "../source.js";
 export default {
   data() {
     return {
       currentLang: func.l,
       extraInfo: {},
-      infodata: window.sessionStorage.getItem("infodata")
-        ? JSON.parse(window.sessionStorage.getItem("infodata"))
-        : {},
+      infodata: store.get("infodata", {}),
       isExtraInfoLoaded: false,
       showIntro: true,
       server: this.$route.params.server,
