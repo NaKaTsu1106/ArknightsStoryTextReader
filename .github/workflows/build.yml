@@ -1,47 +1,50 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# Builds the ASTR webpage and deploys it to GitHub Pages.
+# Served at https://nakatsu1106.github.io/ArknightsStoryTextReader/
 
-name: ASTR Webpage Builder
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the
+# in-progress and latest queued run.
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     env:
       VITE_BASE: /ArknightsStoryTextReader/
-
     steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: 'recursive'
-    - uses: actions/checkout@v2
-      with:
-        repository: 050644zf/ArknightsStoryTextReader
-        ref: gh-pages
-        path: gh-pages
-        token: ${{secrets.PAT}}
-    - uses: actions/setup-node@v4.0.3
-      with:
-        node-version: '22.14.0'
-    - run: |
-        cd reader
-        npm ci
-        npm run build
-        echo "Build Completed!"
-        cd ..
-        cp ./reader/dist/* ./gh-pages -r
-        echo "File Transfer Completed!"
-        cd gh-pages
-        git config --global user.email ${{secrets.EMAIL}}
-        git config --global user.name ${{secrets.USERNAME}}
-        git add -A
-        git commit --allow-empty -m 'Build'
-        git push
-        echo "Build Pushed!"
-    
-    
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'   # required for the astr-i18n submodule
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+      - run: |
+          cd reader
+          npm ci
+          npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: reader/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
